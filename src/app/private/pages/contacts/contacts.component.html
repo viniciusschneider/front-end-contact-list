@@ -38,7 +38,7 @@
             <p class="m-0 ms-2">{{ contact.phone }}</p>
           </div>
           <div class="d-flex align-items-center my-2" *ngIf="contact.whatsapp">
-            <p class="m-0">Whatsapp</p>
+            <mat-icon color="primary" svgIcon="whatsapp"></mat-icon>
             <a
               class="m-0 ms-2"
               [href]="'https://wa.me/' + contact.whatsapp"
@@ -49,7 +49,7 @@
           <p *ngIf="contact.notes" class="text-center px-2">{{ contact.notes }}</p>
         </div>
       </div>
-      <div class="col-12">
+      <div class="col-12 d-flex justify-content-center mt-4">
         <mat-paginator
           class="paginator"
           [pageIndex]="paginatorLimit.page - 1"
