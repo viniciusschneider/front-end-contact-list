@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { DialogConfirmService } from 'src/app/components/dialog-confirm/dialog-confirm.service';
 import { DialogContactFormService } from 'src/app/components/dialog-contact-form/dialog-contact-form.service';
 import { ContactsService } from 'src/app/services/contacts.service';
@@ -17,7 +17,7 @@ import { SnackBarService } from 'src/app/services/snack-bar.service';
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.scss']
 })
-export class ContactsComponent implements OnDestroy, OnInit {
+export class ContactsComponent implements OnDestroy {
 
   form = new FormGroup({
     search: new FormControl(''),
@@ -28,7 +28,7 @@ export class ContactsComponent implements OnDestroy, OnInit {
   paginatorLimit: IPaginate = { limit: 10, page: 1 };
   contacts$: Observable<IListContactsResponse> = combineLatest([
     this.form.valueChanges.pipe(
-      startWith(''),
+      startWith(this.form.getRawValue()),
       map((filter) => {
         this.paginator.next({ page: 1, limit: 10 });
         return filter;
@@ -60,15 +60,22 @@ export class ContactsComponent implements OnDestroy, OnInit {
     private snackbarService: SnackBarService,
   ) {}
 
-  ngOnInit(): void {
-  }
-
   ngOnDestroy(): void {
     this.paginator.complete();
   }
 
-  findContacts(): void {
-    this.contacsService.list({ limit: 2, page: 1 }).toPromise();
+  async create(): Promise<void> {
+    const refresh = await this.dialogContactFormService.create();
+    if (refresh) {
+      this.refresh();
+    }
+  }
+
+  async edit(contact: IContacts): Promise<void> {
+    const refresh = await this.dialogContactFormService.edit(contact);
+    if (refresh) {
+      this.refresh();
+    }
   }
 
   async delete({ id, name }: IContacts): Promise<void> {
@@ -90,25 +97,11 @@ export class ContactsComponent implements OnDestroy, OnInit {
     }
   }
 
-  async create(): Promise<void> {
-    const refresh = await this.dialogContactFormService.create();
-    if (refresh) {
-      this.refresh();
-    }
+  paginate(page: PageEvent): void {
+    this.paginator.next({ limit: page.pageSize, page: page.pageIndex + 1 });
   }
 
   refresh(): void {
     this.form.patchValue({ search: '' });
-  }
-
-  async edit(contact: IContacts): Promise<void> {
-    const refresh = await this.dialogContactFormService.edit(contact);
-    if (refresh) {
-      this.refresh();
-    }
-  }
-
-  paginate(page: PageEvent): void {
-    this.paginator.next({ limit: page.pageSize, page: page.pageIndex + 1 });
   }
 }
