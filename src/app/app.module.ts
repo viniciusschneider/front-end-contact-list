@@ -15,7 +15,7 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 
 const paginatorIntl = new MatPaginatorIntl();
 paginatorIntl.itemsPerPageLabel = 'Itens por página';
-paginatorIntl.nextPageLabel = 'Próxima página'
+paginatorIntl.nextPageLabel = 'Próxima página';
 paginatorIntl.previousPageLabel = 'Página anterior';
 paginatorIntl.getRangeLabel = (page, pageSize, length) => {
   const currentPage = length === 0 ? 1 : page + 1;
