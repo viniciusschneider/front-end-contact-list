@@ -1,0 +1,62 @@
+.new-contact {
+  margin-bottom: 1em;
+}
+
+.search {
+  max-width: 500px;
+  width: 100%;
+}
+
+.paginator {
+  background: transparent;
+}
+
+.contact {
+  .logo {
+    align-items: center;
+    background: #775ca8;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    flex-direction: column;
+    height: 90px;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+
+    .delete, .edit {
+      align-items: center;
+      background: #fafafa;
+      border-radius: 50% 0 0 50%;
+      display: flex;
+      height: 30px;
+      justify-content: center;
+      position: absolute;
+      right: -5px;
+      top: 10px;
+      width: 30px;
+    }
+
+    .delete {
+      top: 50px;
+    }
+
+    .user-image {
+      color: white;
+      font-size: 60px;
+      height: 60px;
+      left: 50%;
+      width: 60px;
+    }
+
+    p {
+      color: white;
+    }
+  }
+
+  .list-contacts {
+    background: white;
+    border-radius: 0 0 10px 10px;
+    height: 230px;
+    overflow-y: scroll;
+  }
+}

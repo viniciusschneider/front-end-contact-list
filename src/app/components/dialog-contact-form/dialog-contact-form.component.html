@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>
+  {{ data.type === 'create' ? 'Criar novo contato' : 'Editar contato' }}
+</h2>
+<mat-dialog-content>
+  <form id="form" class="row" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="col col-md-6">
+      <app-input-text
+        label="Nome"
+        [control]="form | formControl: 'name'"
+      ></app-input-text>
+    </div>
+    <div class="col col-md-6">
+      <app-input-text
+        label="Email"
+        [control]="form | formControl: 'email'"
+      ></app-input-text>
+    </div>
+    <div class="col col-md-6">
+      <app-input-text
+        label="Celular"
+        [control]="form | formControl: 'phone'"
+      ></app-input-text>
+    </div>
+    <div class="col col-md-6">
+      <app-input-text
+        label="Whatsapp"
+        [control]="form | formControl: 'whatsapp'"
+      ></app-input-text>
+    </div>
+    <div class="col">
+      <app-input-text
+        label="Notas"
+        [control]="form | formControl: 'notes'"
+      ></app-input-text>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="d-flex justify-content-end w-100">
+    <button mat-button mat-dialog-close type="button">Cancelar</button>
+    <button mat-button color="primary" type="submit" form="form">Salvar</button>
+  </div>
+</mat-dialog-actions>

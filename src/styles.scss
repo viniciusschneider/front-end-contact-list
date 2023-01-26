@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+* {
+  ::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #673ab7;  
+  }
+}
+
+.h-100 {
+  height: 100%;
+}
+
+$toolbat-height: 64px;
+mat-toolbar {
+  height: $toolbat-height;
+}
+
+main {
+  height: calc(100vh - 64px);
+}
+
+mat-drawer-container {
+  height: calc(100vh - 64px);
+}

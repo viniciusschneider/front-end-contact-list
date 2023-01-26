@@ -1,0 +1,27 @@
+.link {
+  background: #673ab7;
+  border-radius: 30px;
+  padding: 15px 20px;
+  border: 1px solid transparent;
+  color: white;
+  margin: 5px 0;
+
+  &:hover, &:focus {
+    background: #5e37a2;
+  }
+}
+
+.active {
+  background: white;
+  border: 1px solid #673ab7;
+  color: #673ab7;
+  cursor: text !important;
+
+  &:hover, &:focus {
+    background: white;
+  }
+}
+
+mat-nav-list {
+  height: 100%;
+}

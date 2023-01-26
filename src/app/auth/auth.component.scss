@@ -1,0 +1,18 @@
+.form-container {
+  align-items: center;
+  background-image: url('./../../assets/login.jpg');
+  background-position: center;
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  background: rgba(255, 255, 255, .96);
+  border-radius: 10px;
+  border: solid 1px #ddd;
+  max-width: 500px;
+  min-height: 300px;
+  min-width: 300px;
+  padding: 20px;
+  width: 100%;
+}

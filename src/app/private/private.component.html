@@ -1,0 +1,16 @@
+<mat-drawer-container>
+  <mat-drawer class="p-3" [(opened)]="drawerService.show" mode="over">
+    <mat-nav-list class="d-flex flex-column justify-content-between">
+      <div>
+        <a class="link" [routerLinkActive]="['active']" mat-list-item routerLink="contacts">Meus contatos</a>
+      </div>
+      <button class="my-2" mat-icon-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Sair
+      </button>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

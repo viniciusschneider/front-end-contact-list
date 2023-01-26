@@ -1,0 +1,15 @@
+<mat-form-field appearance="outline" class="w-100">
+  <mat-label>{{ label }}</mat-label>
+  <input [type]="type !== 'password' ? type : showPassword ? 'text' : 'password'" matInput [formControl]="control">
+  <mat-error *ngIf="hasErrors">
+    {{ error }}
+  </mat-error>
+  <mat-icon matPrefix *ngIf="prefixIcon">{{ prefixIcon }}</mat-icon>
+  <mat-icon
+    matSuffix
+    *ngIf="type === 'password'"
+    (click)="showPassword = !showPassword"
+  >
+    {{ showPassword ? 'visibility_off' : 'visibility' }}
+  </mat-icon>
+</mat-form-field>

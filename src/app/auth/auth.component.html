@@ -1,0 +1,38 @@
+<div class="form-container h-100">
+  <div>
+    <form class="form d-flex flex-column" [formGroup]="form" (ngSubmit)="submit()">
+      <app-input-text
+        label="Email"
+        [control]="form | formControl: 'email'"
+      ></app-input-text>
+      <app-input-text
+        *ngIf="!isSingIn"
+        label="Nome"
+        [control]="form | formControl: 'name'"
+      ></app-input-text>
+      <app-input-text
+        label="Senha"
+        [control]="form | formControl: 'password'"
+        type="password"
+      ></app-input-text>
+      <app-input-text
+        *ngIf="!isSingIn"
+        label="Confirmar Senha"
+        [control]="form | formControl: 'confirmPassword'"
+        type="password"
+      ></app-input-text>
+      <button type="submit" mat-raised-button color="primary" [disabled]="loading">
+        {{ isSingIn ? 'Entrar' : 'Cadastrar' }}
+      </button>
+      <button
+        type="button"
+        class="mt-2"
+        mat-button
+        [disabled]="loading"
+        (click)="changeForm()"
+      >
+        {{ isSingIn ? 'Já possui conta?' : 'Já posso conta' }}
+      </button>
+    </form>
+  </div>
+</div>

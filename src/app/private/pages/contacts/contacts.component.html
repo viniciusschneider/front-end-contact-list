@@ -1,0 +1,64 @@
+<div class="p-4">
+  <div class="d-flex flex-column justify-content-center flex-md-row justify-content-md-between align-items-center w-100">
+    <div class="me-3 search">
+      <app-input-text
+        prefixIcon="search"
+        label="Buscar contato"
+        [control]="form | formControl: 'search'"
+      ></app-input-text>
+    </div>
+    <div>
+      <button class="new-contact" mat-raised-button color="primary" (click)="create()">Novo contato</button>
+    </div>
+  </div>
+  <ng-container *ngIf="(contacts$ | async) as contacts">
+    <div class="row" *ngIf="contacts.items.length > 0">
+      <div *ngFor="let contact of contacts.items" class="contact col-12 col-md-6 col-lg-4 my-2">
+        <div class="logo">
+          <mat-icon class="user-image">account_circle</mat-icon>
+          <p>{{ contact.name }}</p>
+          <div class="edit">
+            <button mat-icon-button>
+              <mat-icon color="primary" (click)="edit(contact)">edit</mat-icon>
+            </button>
+          </div>
+          <div class="delete">
+            <button mat-icon-button>
+              <mat-icon color="primary" (click)="delete(contact)">delete</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="list-contacts px-2">
+          <div class="d-flex align-items-center my-2" *ngIf="contact.email">
+            <mat-icon color="primary">mail</mat-icon>
+            <p class="m-0 ms-2">{{ contact.email }}</p>
+          </div>
+          <div class="d-flex align-items-center my-2" *ngIf="contact.phone">
+            <mat-icon color="primary">smartphone</mat-icon>
+            <p class="m-0 ms-2">{{ contact.phone }}</p>
+          </div>
+          <div class="d-flex align-items-center my-2" *ngIf="contact.whatsapp">
+            <p class="m-0">Whatsapp</p>
+            <a
+              class="m-0 ms-2"
+              [href]="'https://wa.me/' + contact.whatsapp"
+              target="_blank"
+            >{{ contact.whatsapp }}</a>
+          </div>
+          <mat-divider class="my-3"></mat-divider>
+          <p *ngIf="contact.notes" class="text-center px-2">{{ contact.notes }}</p>
+        </div>
+      </div>
+      <div class="col-12">
+        <mat-paginator
+          class="paginator"
+          [pageIndex]="paginatorLimit.page - 1"
+          [pageSize]="paginatorLimit.limit"
+          [length]="contacts.total"
+          [pageSizeOptions]="[5, 10, 25, 50, 100]"
+          (page)="paginate($event)"
+        ></mat-paginator>
+      </div>
+    </div>
+  </ng-container>
+</div>
